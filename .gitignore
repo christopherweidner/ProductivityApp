@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+
+# Node.js
+node_modules/
+dist/
+.DS_Store
+
+# Logs
+*.log
+activity_log.csv
+agent_status.json
+
+# IDE
+.vscode/
+.idea/
