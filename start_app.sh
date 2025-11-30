@@ -6,9 +6,19 @@ pkill -f "vite"
 
 echo "Starting Deep Work App..."
 
+# Check if .venv exists
+if [ ! -d ".venv" ]; then
+    echo "Creating virtual environment..."
+    python3 -m venv .venv
+    source .venv/bin/activate
+    echo "Installing dependencies..."
+    pip install -r requirements.txt
+else
+    source .venv/bin/activate
+fi
+
 # Start Backend
 echo "Starting Backend Server..."
-source .venv/bin/activate
 python server.py &
 BACKEND_PID=$!
 
@@ -18,6 +28,13 @@ sleep 2
 # Start Frontend
 echo "Starting Frontend..."
 cd frontend
+
+# Check if node_modules exists
+if [ ! -d "node_modules" ]; then
+    echo "Installing frontend dependencies..."
+    npm install
+fi
+
 npm run dev &
 FRONTEND_PID=$!
 
